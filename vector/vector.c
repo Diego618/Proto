@@ -2,18 +2,12 @@
 #include "vector.h"
 #include <stdlib.h>
 
-int main(void) {
-
-}
-
-
 void vect_free (vector* v){
     free(v->location);
     v->location = NULL;
 }
 
 void vect_init (vector* v, size_t capacity){
-    printf("I'm making a vector\n");
     v->capacity = capacity;
     v->location = malloc(v->capacity * sizeof(int));
     v->size = 0;
@@ -37,7 +31,6 @@ void vect_push (vector* v, int value){
             return;
         }
     }
-    printf("pushing\n");
     v->location[v->size] = value;
     v->size++;
 }

@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "vector",
+            "name": "program",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/vector/vector",
-            "cwd": "${workspaceFolder}/vector",
+            "program": "${workspaceFolder}/program",
+            "cwd": "${workspaceFolder}/program",
             "MIMode": "gdb",
             "setupCommands": [
                 {
