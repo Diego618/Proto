@@ -6,27 +6,67 @@ int main(void) {
 
     printf("crocodile\n");
     vector vect;
-    vect_init(&vect, 35);
-    for (int i = 0; i < 5; i++)
+    vect_init(&vect, 10);
+    for (int i = 0; i < 10; i++)
     {
-        vect_push(&vect, 5);
+        vect_push(&vect, i);
     }
+    vect_print(&vect);
+    vect_push(&vect, 67);
+    vect_print(&vect);
+    vect_free(&vect);
     return 0;
+}
+
+
+void vect_free (vector* v){
+    free(v->location);
+    v->location = NULL;
 }
 
 void vect_init (vector* v, size_t capacity){
     printf("I'm making a vector\n");
-    v->location = malloc(capacity * sizeof(int));
     v->capacity = capacity;
+    v->location = malloc(v->capacity * sizeof(int));
     v->size = 0;
 }
 
-void vect_push (vector* v, int value){
-    printf("pushing %i\n", value);
-    if (v->size == v->capacity)
+
+void vect_print (vector* v){
+    for (int i = 0; i < v->capacity; i++)
     {
-        printf("UNDER DEVELOPMENT \n");
-        exit;
+        printf("vect [%d]: %d\n", i, v->location[i]);
+    }
+}
+
+
+void vect_push (vector* v, int value){
+    if (v->size >= v->capacity)
+    {
+        int i = vect_resize(v);
+        if (i == 1)
+        {
+            return;
+        }
+    }
+    printf("pushing\n");
+    v->location[v->size] = value;
+    v->size++;
+}
+
+
+int vect_resize (vector* v){
+    int newCap = v->capacity*2;
+    int* temp = realloc(v->location, newCap*sizeof(int));
+    if (temp != NULL)
+    {
+        v->location = temp;
+        v->capacity = newCap;
+        return 0;
+    }
+    else
+    {
+        return 1;
     }
 }
 

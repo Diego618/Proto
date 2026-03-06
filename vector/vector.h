@@ -9,7 +9,8 @@ typedef struct {
 
 void vect_init (vector* v, size_t capacity);
 void vect_push (vector* v, int value);
-void vect_resize (vector* v, int value);
+int vect_resize (vector* v);
 void vect_free (vector* v);
+void vect_print (vector* v);
 
 #endif
